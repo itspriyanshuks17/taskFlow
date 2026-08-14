@@ -24,7 +24,7 @@ The goal of this project wasn't just "build a task tracker." It was to build one
                                    │
                  ┌─────────────────┴───────────────────┐
                  │                                     │
-        ┌────────▼─────────┐                  ┌───────▼────────────┐
+        ┌────────▼─────────┐                  ┌────────▼───────────┐
         │  Frontend        │                  │  Backend API       │
         │  React + Vite    │──── REST/WS ──   │  Express + Socket  │
         │  (nginx, static) │                  │  .io               │
