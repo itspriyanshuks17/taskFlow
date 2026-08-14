@@ -17,24 +17,24 @@ The goal of this project wasn't just "build a task tracker." It was to build one
 ## Architecture
 
 ```
-                        ┌─────────────────────┐
+                        ┌──────────────────────┐
                         │   Ingress / ALB      │
                         │  (TLS termination)   │
                         └──────────┬───────────┘
                                    │
-                 ┌─────────────────┴─────────────────┐
+                 ┌─────────────────┴───────────────────┐
                  │                                     │
-        ┌────────▼────────┐                  ┌────────▼─────────┐
-        │  Frontend        │                  │  Backend API      │
-        │  React + Vite    │──── REST/WS ────▶│  Express + Socket │
+        ┌────────▼─────────┐                  ┌───────▼────────────┐
+        │  Frontend        │                  │  Backend API       │
+        │  React + Vite    │──── REST/WS ──   │  Express + Socket  │
         │  (nginx, static) │                  │  .io               │
-        └──────────────────┘                  └────────┬──────────┘
+        └──────────────────┘                  └────────┬───────────┘
                                                           │
-                                               ┌──────────▼──────────┐
+                                               ┌──────────▼───────────┐
                                                │   PostgreSQL         │
                                                │   (RDS / Flexible    │
-                                               │    Server)            │
-                                               └───────────────────────┘
+                                               │    Server)           │
+                                               └──────────────────────┘
 
         Both services run as Kubernetes Deployments with HPA,
         readiness/liveness probes, and PodDisruptionBudgets.
